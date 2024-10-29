@@ -40,8 +40,8 @@ const main = () => {
   processWallets(
     temp_wallets,
     temp_wallets.length,
-    new PublicKey("21AErpiB8uSb94oQKRcwuHqyHF93njAxBSbdUrpupump"),
-    new PublicKey("32vFAmd12dTHMwo9g5QuCE9sgvdv72yUfK9PMP2dtBj7")
+    new PublicKey("CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump"),
+    new PublicKey("9Tb2ohu5P16BpBarqd3N27WnkF51Ukfs8Z1GzzLDxVZW")
   )
 }
 
@@ -85,9 +85,9 @@ const performBuyAndSell = async (
     : BUY_AMOUNT;
 
 
-  // console.log(`Wallet ${index}: Attempting to buy...`);
-  // console.log("buyAmount", buyAmount)
-  // await retryTransaction(() => buy(kp, baseMint, poolId, buyAmount), MAX_RETRY);
+  console.log(`Wallet ${index}: Attempting to buy...`);
+  console.log("buyAmount", buyAmount)
+  await retryTransaction(() => buy(kp, baseMint, poolId, buyAmount), MAX_RETRY);
 
   await sleep(5000);
 
@@ -124,7 +124,7 @@ const buy = async (newWallet: Keypair, baseMint: PublicKey, poolId: PublicKey, b
     return false;
   }
   try {
-    let tx: VersionedTransaction | null;
+    let tx;
     if (SWAP_ROUTING) tx = await getBuyTxWithJupiter(newWallet, baseMint, buyAmount);
     else tx = await getBuyTx(SOLANA_CONNECTION, newWallet, baseMint, NATIVE_MINT, buyAmount, poolId.toBase58());
     if (tx == null) {
