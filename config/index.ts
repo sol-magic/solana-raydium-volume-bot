@@ -33,7 +33,6 @@ const ENV = {
   JITO_KEY: retrieveEnvVariable("JITO_KEY", logger),
   BLOCKENGINE_URL: retrieveEnvVariable("BLOCKENGINE_URL", logger),
   JITO_FEE: retrieveEnvVariable("JITO_FEE", logger),
-  // MONGO_URL: retrieveEnvVariable("MONGO_URL", logger),
 };
 
 // Convert and process environment variables with type safety and fallback defaults
@@ -64,17 +63,12 @@ export const TX_FEE = toNumber(ENV.TX_FEE, 10);
 export const POOL_ID = ENV.POOL_ID; // Pool ID could be null or a string
 export const TOKEN_MINT = ENV.TOKEN_MINT; 
 
-
 export const LOG_LEVEL = ENV.LOG_LEVEL || "info"; // Set default log level
 
 export const ADDITIONAL_FEE = toNumber(ENV.ADDITIONAL_FEE, 0.002);
 export const JITO_KEY = ENV.JITO_KEY || "";
 export const BLOCKENGINE_URL = ENV.BLOCKENGINE_URL || "";
 export const JITO_FEE = toNumber(ENV.JITO_FEE, 120000); // Default fee in lamports
-
-// export const MONGO_URL = ENV.MONGO_URL || "";
-
-
 
 // Initialize Solana Connection
 export const SOLANA_CONNECTION = new Connection(RPC_ENDPOINT, {

@@ -1,5 +1,5 @@
-import { Connection, VersionedTransaction } from "@solana/web3.js";
-import { RPC_ENDPOINT, RPC_WEBSOCKET_ENDPOINT } from "../../config";
+import { VersionedTransaction } from "@solana/web3.js";
+import { SOLANA_CONNECTION } from "../../config";
 
 
 interface Blockhash {
@@ -8,12 +8,12 @@ interface Blockhash {
 }
 
 export const execute = async (transaction: VersionedTransaction, latestBlockhash: Blockhash, isBuy: boolean = true) => {
-  const solanaConnection = new Connection(RPC_ENDPOINT, {
-    wsEndpoint: RPC_WEBSOCKET_ENDPOINT,
-  })
-
-  const signature = await solanaConnection.sendRawTransaction(transaction.serialize(), { skipPreflight: true })
-  const confirmation = await solanaConnection.confirmTransaction(
+  console.log("Executing Tx...")
+  const connection = SOLANA_CONNECTION
+  console.log(await connection.simulateTransaction(transaction));
+  const signature = await connection.sendRawTransaction(transaction.serialize(), { skipPreflight: true })
+  console.log("signature", signature)
+  const confirmation = await connection.confirmTransaction(
     {
       signature,
       lastValidBlockHeight: latestBlockhash.lastValidBlockHeight,

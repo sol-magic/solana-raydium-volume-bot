@@ -15,8 +15,6 @@ export const retrieveEnvVariable = (variableName: string, logger: Logger) => {
   return variable;
 };
 
-
-
 const transport = pino.transport({
   target: 'pino-pretty',
 });

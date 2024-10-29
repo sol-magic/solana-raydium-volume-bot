@@ -15,9 +15,7 @@ import {
   BUY_UPPER_AMOUNT,
   IS_RANDOM,
   SOLANA_CONNECTION,
-  ADDITIONAL_FEE,
-  TOKEN_MINT,
-  POOL_ID
+  ADDITIONAL_FEE
 } from './config';
 import { execute } from './utils/executor/legacy';
 import { getBuyTx, getBuyTxWithJupiter, getSellTx, getSellTxWithJupiter } from './utils/swap';
@@ -25,6 +23,7 @@ import {  readJson, sleep } from './utils/utils';
 
 import base58 from 'bs58'
 import { VersionedTransaction } from '@solana/web3.js';
+
 const RETRY_DELAY_MS = 2000;
 const MAX_RETRY = 10;
 
@@ -41,8 +40,8 @@ const main = () => {
   processWallets(
     temp_wallets,
     temp_wallets.length,
-    new PublicKey(TOKEN_MINT),
-    new PublicKey(POOL_ID)
+    new PublicKey("21AErpiB8uSb94oQKRcwuHqyHF93njAxBSbdUrpupump"),
+    new PublicKey("32vFAmd12dTHMwo9g5QuCE9sgvdv72yUfK9PMP2dtBj7")
   )
 }
 
@@ -86,9 +85,9 @@ const performBuyAndSell = async (
     : BUY_AMOUNT;
 
 
-  console.log(`Wallet ${index}: Attempting to buy...`);
-  console.log("buyAmount", buyAmount)
-  await retryTransaction(() => buy(kp, baseMint, poolId, buyAmount), MAX_RETRY);
+  // console.log(`Wallet ${index}: Attempting to buy...`);
+  // console.log("buyAmount", buyAmount)
+  // await retryTransaction(() => buy(kp, baseMint, poolId, buyAmount), MAX_RETRY);
 
   await sleep(5000);
 
@@ -112,6 +111,8 @@ const retryTransaction = async (fn: () => Promise<boolean>, maxRetry: number) =>
 };
 
 const buy = async (newWallet: Keypair, baseMint: PublicKey, poolId: PublicKey, buyAmount: number): Promise<boolean> => {
+  console.log("baseMint", baseMint)
+  console.log("poolId", poolId)
   let solBalance: number = 0;
   try {
     solBalance = await SOLANA_CONNECTION.getBalance(newWallet.publicKey);
@@ -152,6 +153,7 @@ const sell = async (
   try {
     const tokenAta = await getAssociatedTokenAddress(baseMint, wallet.publicKey);
     const tokenBalInfo = await SOLANA_CONNECTION.getTokenAccountBalance(tokenAta);
+    console.log("tokenBalInfo", tokenBalInfo)
     if (!tokenBalInfo) {
       console.log('Balance incorrect');
       return false;
