@@ -10,7 +10,7 @@ interface Blockhash {
 export const execute = async (transaction: VersionedTransaction, latestBlockhash: Blockhash, isBuy: boolean = true) => {
   console.log("Executing Tx...")
   const connection = SOLANA_CONNECTION
-  // console.log(await connection.simulateTransaction(transaction));
+  console.log(await connection.simulateTransaction(transaction));
   const signature = await connection.sendRawTransaction(transaction.serialize(), { skipPreflight: true })
   // console.log("signature", signature)
   const confirmation = await connection.confirmTransaction(

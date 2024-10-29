@@ -89,10 +89,10 @@ const performBuyAndSell = async (
   console.log("buyAmount", buyAmount)
   await retryTransaction(() => buy(kp, baseMint, poolId, buyAmount), MAX_RETRY);
 
-  await sleep(5000);
+  await sleep(10000);
 
   console.log(`Wallet ${index}: Attempting to sell...`);
-  await retryTransaction(() => sell(kp, baseMint, poolId), MAX_RETRY);
+  await retryTransaction(() => sell(kp, baseMint, poolId, true), MAX_RETRY);
 };
 
 const retryTransaction = async (fn: () => Promise<boolean>, maxRetry: number) => {
@@ -111,8 +111,6 @@ const retryTransaction = async (fn: () => Promise<boolean>, maxRetry: number) =>
 };
 
 const buy = async (newWallet: Keypair, baseMint: PublicKey, poolId: PublicKey, buyAmount: number): Promise<boolean> => {
-  console.log("baseMint", baseMint)
-  console.log("poolId", poolId)
   let solBalance: number = 0;
   try {
     solBalance = await SOLANA_CONNECTION.getBalance(newWallet.publicKey);
@@ -132,6 +130,7 @@ const buy = async (newWallet: Keypair, baseMint: PublicKey, poolId: PublicKey, b
       return false;
     }
     const latestBlockHash = await SOLANA_CONNECTION.getLatestBlockhash();
+    
     const txSig = await execute(tx, latestBlockHash);
     if(txSig === "") {
       return false;
@@ -160,6 +159,7 @@ const sell = async (
     }
     let tokenBalance = tokenBalInfo.value.amount;
     console.log(tokenBalance);
+    if(tokenBalance === '0') return false;
     if (isHalfSell) tokenBalance = new BN(tokenBalInfo.value.amount).div(new BN(2)).toString();
 
     let sellTx: VersionedTransaction | null;
