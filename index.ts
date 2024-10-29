@@ -15,7 +15,9 @@ import {
   BUY_UPPER_AMOUNT,
   IS_RANDOM,
   SOLANA_CONNECTION,
-  ADDITIONAL_FEE
+  ADDITIONAL_FEE,
+  TOKEN_MINT,
+  POOL_ID
 } from './config';
 import { execute } from './utils/executor/legacy';
 import { getBuyTx, getBuyTxWithJupiter, getSellTx, getSellTxWithJupiter } from './utils/swap';
@@ -40,8 +42,8 @@ const main = () => {
   processWallets(
     temp_wallets,
     temp_wallets.length,
-    new PublicKey("CzLSujWBLFsSjncfkh59rUFqvafWcY5tzedWJSuypump"),
-    new PublicKey("9Tb2ohu5P16BpBarqd3N27WnkF51Ukfs8Z1GzzLDxVZW")
+    new PublicKey(TOKEN_MINT),
+    new PublicKey(POOL_ID)
   )
 }
 
