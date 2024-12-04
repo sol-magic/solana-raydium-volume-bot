@@ -10,23 +10,17 @@ You can always feel free to find me here for my help on other projects.
 ## Key Features
 
 ### Version 1
-- 1. Automatic SOL Distribution
-Automatically distribute SOL tokens across multiple wallets to streamline asset management and optimize transaction execution.
+- **Automatic SOL Distribution**: Automatically distribute SOL tokens across multiple wallets to streamline asset management and optimize transaction execution.
 
-- 2. Multiple Wallet Support
-Seamlessly manage and execute trades across several wallets to diversify strategy and reduce exposure.
+- **Multiple Wallet Support**: Seamlessly manage and execute trades across several wallets to diversify strategy and reduce exposure.
 
-- 3. Token Swapping
-Utilize the Raydium SDK or Jupiter API for efficient token swaps, enabling quick and cost-effective trading strategies.
+- **Token Swapping** Utilize the Raydium SDK or Jupiter API for efficient token swaps, enabling quick and cost-effective trading strategies.
 
-- 4. Dynamic Trading Intervals
-Buy and sell tokens in random amounts at varying time intervals across multiple wallets, adding an element of unpredictability to trading behavior.
+- **Dynamic Trading Intervals**: Buy and sell tokens in random amounts at varying time intervals across multiple wallets, adding an element of unpredictability to trading behavior.
 
-- 5. Transactions via Jito Mode
-Conduct transactions using Jito mode to enhance efficiency and speed in order execution.
+- **Transactions via Jito Mode**: Conduct transactions using Jito mode to enhance efficiency and speed in order execution.
 
-- 6. Solana Volume Wallet Gathering
-Collect SOL from designated volume wallets to facilitate trading and ensure liquidity.
+- **Solana Volume Wallet Gathering**: Collect SOL from designated volume wallets to facilitate trading and ensure liquidity.
 
 ### Version 2: Enhanced Buyer Strategy
 - **Adjust Buying vs. Selling Ratios**: Increase the frequency of purchases to sales, adopting strategies such as 2 purchases for every 1 sale or engaging in 3 purchases at a time, while limiting selling actions to enhance market presence.
