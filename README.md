@@ -2,8 +2,7 @@
 
 ## Contact Info
 
-Telegram: @web3wiza
-Discord: web3_wiza
+Telegram: https://t.me/magicsolwiz Discord: m_solwiz
 
 You can always feel free to find me here for my help on other projects.
 
